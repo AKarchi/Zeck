@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --mode: light;
+}
+
+/* Theme: Racing */
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 220 15% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 15%;
+    --primary: 14 100% 57%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 220 15% 92%;
+    --secondary-foreground: 220 15% 15%;
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 10% 45%;
+    --accent: 45 100% 51%;
+    --accent-foreground: 220 15% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 15% 85%;
+    --input: 220 15% 85%;
+    --ring: 14 100% 57%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 98%;
+    --speed-1: 142 76% 36%;
+    --speed-2: 45 100% 51%;
+    --speed-3: 14 100% 57%;
+    --speed-4: 0 84% 60%;
+    --track: 220 15% 90%;
+    --finish-line: 220 15% 15%;
+    --radius: 0.75rem
+  }
+  .dark {
+    --background: 220 25% 8%;
+    --foreground: 220 15% 92%;
+    --card: 220 25% 10%;
+    --card-foreground: 220 15% 92%;
+    --popover: 220 25% 10%;
+    --popover-foreground: 220 15% 92%;
+    --primary: 14 100% 57%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 220 20% 15%;
+    --secondary-foreground: 220 15% 92%;
+    --muted: 220 20% 15%;
+    --muted-foreground: 220 10% 60%;
+    --accent: 45 100% 51%;
+    --accent-foreground: 220 15% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 14 100% 57%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 98%;
+    --speed-1: 142 76% 36%;
+    --speed-2: 45 100% 51%;
+    --speed-3: 14 100% 57%;
+    --speed-4: 0 84% 60%;
+    --track: 220 20% 15%;
+    --finish-line: 220 15% 85%;
+  }
+}
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .racing-track {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--track)) 0%,
+      hsl(var(--track)) 48%,
+      hsl(var(--finish-line)) 48%,
+      hsl(var(--finish-line)) 52%,
+      hsl(var(--track)) 52%,
+      hsl(var(--track)) 100%
+    );
+    background-size: 100px 100%;
+    animation: track-scroll 2s linear infinite;
+  }
+  
+  .racing-car {
+    transition: transform 0.3s ease-out;
+  }
+  
+  .speed-gauge {
+    background: conic-gradient(
+      from 180deg,
+      hsl(var(--success)) 0deg,
+      hsl(var(--speed-2)) 90deg,
+      hsl(var(--speed-3)) 180deg,
+      hsl(var(--destructive)) 270deg,
+      hsl(var(--success)) 360deg
+    );
+  }
+  
+  .typing-cursor {
+    animation: blink 1s infinite;
+  }
+  
+  .correct-char {
+    @apply text-success;
+    background-color: hsl(var(--success) / 0.1);
+  }
+  
+  .incorrect-char {
+    @apply text-destructive;
+    background-color: hsl(var(--destructive) / 0.1);
+  }
+  
+  .current-char {
+    @apply text-primary;
+    background-color: hsl(var(--primary) / 0.2);
+  }
+  
+  .untyped-char {
+    @apply text-muted-foreground;
+  }
+}
+
+@layer utilities {
+  .text-speed-1 { color: hsl(var(--speed-1)); }
+  .text-speed-2 { color: hsl(var(--speed-2)); }
+  .text-speed-3 { color: hsl(var(--speed-3)); }
+  .text-speed-4 { color: hsl(var(--speed-4)); }
+  .bg-speed-1 { background-color: hsl(var(--speed-1)); }
+  .bg-speed-2 { background-color: hsl(var(--speed-2)); }
+  .bg-speed-3 { background-color: hsl(var(--speed-3)); }
+  .bg-speed-4 { background-color: hsl(var(--speed-4)); }
+  .text-success { color: hsl(var(--success)); }
+  .bg-success { background-color: hsl(var(--success)); }
+  .text-warning { color: hsl(var(--warning)); }
+  .bg-warning { background-color: hsl(var(--warning)); }
+}
+
+@keyframes track-scroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 100px 0; }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
